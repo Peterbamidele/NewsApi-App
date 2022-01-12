@@ -1,28 +1,30 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <Layout>
+    <h2 class="mb-8 text-4xl font-bold text-center capitalize">
+      News Section : <span class="text-green-700">{{ section }}</span>
+    </h2>
+    <NewsFilter v-model="section" />
+    <NewsList :posts="posts" />
+  </Layout>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Layout from "./components/Layout"
+import NewsFilter from "./components/NewsFilter"
+import NewsList from "@/components/NewsList";
 
+import data from "./posts.json"
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
+    Layout,
+    NewsFilter,
+    NewsList
+  },
+  data(){
+    return {
+      section: "home",
+      posts: data.posts,
+    }
+  },
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

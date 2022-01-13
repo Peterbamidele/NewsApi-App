@@ -1,7 +1,7 @@
 <template>
   <div>
   <Header/>
-  <main className="container flex-grow px-4 mx-auto my-12">
+  <main className="container flex-grow px-4 mx-auto my-12 px-10">
     <slot/>
   </main>
   <Footer/>

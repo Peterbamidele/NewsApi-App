@@ -1,5 +1,5 @@
 <template>
-<section class="p-4 rounded-lg shadow-lg bg-gray-50 w-80">
+<section class="p-4 rounded-lg shadow-lg bg-gray-50 ma-15">
   <div class="h-98">
     <a
         class="text-xl font-bold text-center text-green-800 hover:text-green-600 hover:underline"

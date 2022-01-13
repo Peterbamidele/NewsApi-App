@@ -1,5 +1,5 @@
 <template>
-<section class="p-4 rounded-lg shadow-lg bg-gray-50 ma-15">
+<section class="p-4 rounded-lg shadow-lg bg-gray-50 ma-30">
   <div class="h-98">
     <a
         class="text-xl font-bold text-center text-green-800 hover:text-green-600 hover:underline"
@@ -37,3 +37,7 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+
+</style>

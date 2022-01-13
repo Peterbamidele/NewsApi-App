@@ -7,25 +7,12 @@ const sections = [
     "fashion",
     "food",
     "health",
+    "insider",
+    "magazine",
     "movies",
-    "technology",
     "politics",
+    "technology"
 
-//     "insider",
-//     "magazine",
-//     "nyregion",
-//     "obituaries",
-//     "opinion",
-//     "realestate",
-//     "science",
-//     "sports",
-//     "sundayreview",
-//     "theater",
-//     "magazine",
-//     "travel",
-//     "upshot",
-//     "us",
-//     "world",
 ]
 
 export default sections

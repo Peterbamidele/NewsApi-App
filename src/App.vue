@@ -1,11 +1,11 @@
 <template>
-
+  <v-app>
   <Layout>
     <h2 class="mb-8 text-4xl font-bold text-center capitalize">
       News Section : <span class="text-green-700">{{ section }}</span>
     </h2>
     <NewsFilter v-model="section" @fetch="fetchNews" />
-    <NewsList v-if="!loading && !error" :posts="posts" />
+    <NewsList  :posts="posts" />
 
     <!-- loading -->
     <div class="mt-40" v-if="loading">
@@ -24,13 +24,16 @@
     </div>
     <!-- End of error alert -->
   </Layout>
+  </v-app>
 </template>
 
 <script>
+import axios from "axios"
 import Layout from "@/components/Layout"
 import NewsFilter from "@/components/NewsFilter"
 import NewsList from "@/components/NewsList";
-import axios from "axios"
+
+
 
 const api = "LxTedW1dmW8lxW5RxdZoNwFmfVc7V0cO";
 
@@ -65,10 +68,12 @@ export default {
     )
     return imgObj ? imgObj : defaultImg
   },
-  async fetchNews() {
+  async fetchNews(category) {
     try {
-
-      const url = `https://api.nytimes.com/svc/topstories/v2/${this.section}.json?api-key=${api}`;
+      if(!category){
+        category = 'home'
+      }
+      const url = `https://api.nytimes.com/svc/topstories/v2/${category}.json?api-key=${api}`;
       const response = await axios.get(url);
       const results = response.data.results;
       this.posts = results.map(post => ({

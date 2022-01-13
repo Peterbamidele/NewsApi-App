@@ -13,24 +13,19 @@
             fill-rule="nonzero"
         />
       </svg>
-      <select
-          class="h-10 pl-5 pr-10 text-gray-600 bg-white border border-gray-300 rounded-lg appearance-none hover:border-gray-400 focus:outline-none"
-          v-model="section"
+      <v-select
+          :items="sections"
+          v-model="value"
+          solo
       >
-        <option
-            v-for="(section, index) in sections"
-            :key="index"
-            :value="section"
-        >
-          {{ capitalize(section) }}
-        </option>
-      </select>
+
+      </v-select>
     </div>
     <!-- End of select dropdown -->
     <div class="self-center ml-8">
       <button
           class="px-6 py-2 text-white bg-green-700 rounded hover:bg-green-900"
-          @click="fetch"
+        v-on:click="$emit('fetch',value)"
       >
         Retrieve
       </button>
@@ -44,7 +39,6 @@ import sectionsData from "@/components/sections";
 export default {
   props: {
     modelValue: String,
-    fetch: Function,
   },
   setup(props, { emit }) {
     const section = computed({
@@ -57,7 +51,8 @@ export default {
   },
   data() {
     return {
-      sections: sectionsData,
+      sections:sectionsData,
+      value:''
     }
   },
   methods: {

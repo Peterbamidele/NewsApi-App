@@ -4,9 +4,6 @@
     <h2 class="mb-8 text-4xl font-bold text-center capitalize">
       News Section : <span class="text-green-700">{{ section }}</span>
     </h2>
-    <NewsFilter v-model="section" @fetch="fetchNews" />
-    <NewsList  :posts="posts" />
-
     <!-- loading -->
     <div class="mt-40" v-if="loading">
       <p class="text-6xl font-bold text-center text-gray-500 animate-pulse">
@@ -16,13 +13,18 @@
     <!-- End of loading -->
 
     <!-- error alert -->
-    <div class="mt-12 bg-red-50" v-if="error">
+    <div  class="mt-12 bg-red-50" v-else-if="error">
       <h3 class="px-4 py-1 text-4xl font-bold text-white bg-red-800">
         {{ error.title }}
       </h3>
       <p class="p-4 text-lg font-bold text-red-900">{{ error.message }}</p>
     </div>
     <!-- End of error alert -->
+
+    <div v-else>
+      <NewsFilter v-model="section" @fetch="fetchNews" />
+      <NewsList  :posts="posts" />
+    </div>
   </Layout>
   </v-app>
 </template>
@@ -36,6 +38,7 @@ import NewsList from "@/components/NewsList";
 
 
 const api = "LxTedW1dmW8lxW5RxdZoNwFmfVc7V0cO";
+    // "02d9cdc50b01b1a7cb04f0ebd51eca49";
 
 
 export default {
@@ -63,9 +66,7 @@ export default {
       if(!post.multimedia){
         return defaultImg
       }
-    let imgObj = post.multimedia.find(
-        media => media.format === "mediumThreeByTwo210"
-    )
+      let imgObj = post.multimedia[0].url
     return imgObj ? imgObj : defaultImg
   },
   async fetchNews(category) {
@@ -76,11 +77,12 @@ export default {
       const url = `https://api.nytimes.com/svc/topstories/v2/${category}.json?api-key=${api}`;
       const response = await axios.get(url);
       const results = response.data.results;
+      console.log(results)
       this.posts = results.map(post => ({
         title: post.title,
         abstract: post.abstract,
         url: post.url,
-        thumbnail: this.extractImage(post).url,
+        thumbnail: this.extractImage(post),
         caption: this.extractImage(post).caption,
         byline: post.byline,
         published_date: post.published_date,

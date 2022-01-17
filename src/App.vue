@@ -70,6 +70,7 @@ export default {
     return imgObj ? imgObj : defaultImg
   },
   async fetchNews(category) {
+      this.loading = true
     try {
       if(!category){
         category = 'home'
@@ -87,12 +88,14 @@ export default {
         byline: post.byline,
         published_date: post.published_date,
       }))
+      this.loading = false
     } catch (err) {
       if (err.response) {
         this.error={
           title: "Server Response",
           message: err.message,
         }
+
       } else if (err.request) {
         this.error = {
           title: "Unable to Reach Server",

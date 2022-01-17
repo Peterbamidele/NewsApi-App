@@ -5,15 +5,15 @@
       News Section : <span class="text-green-700">{{ section }}</span>
     </h2>
     <!-- loading -->
-    <div class="mt-40" v-if="loading">
-      <p class="text-6xl font-bold text-center text-gray-500 animate-pulse">
-        Loading...
-      </p>
-    </div>
+<!--    <div class="mt-40">-->
+<!--      <p class="text-6xl font-bold text-center text-gray-500 animate-pulse">-->
+<!--        Loading...-->
+<!--      </p>-->
+<!--    </div>-->
     <!-- End of loading -->
 
     <!-- error alert -->
-    <div  class="mt-12 bg-red-50" v-else-if="error">
+    <div  class="mt-12 bg-red-50" v-if="error">
       <h3 class="px-4 py-1 text-4xl font-bold text-white bg-red-800">
         {{ error.title }}
       </h3>
@@ -22,7 +22,7 @@
     <!-- End of error alert -->
 
     <div v-else>
-      <NewsFilter v-model="section" @fetch="fetchNews" />
+      <NewsFilter :loading="loading" v-model="section" @fetch="fetchNews" />
       <NewsList  :posts="posts" />
     </div>
   </Layout>

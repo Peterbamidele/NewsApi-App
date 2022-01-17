@@ -23,12 +23,15 @@
     </div>
     <!-- End of select dropdown -->
     <div class=" ml-8">
-      <button
-          class="px-6 py-3 text-white bg-green-700 rounded hover:bg-green-900"
+      <v-btn
+          class="px-6 py-3 white--text"
+          color="green"
+          large
         v-on:click="$emit('fetch',value)"
+          :loading="loading"
       >
         Retrieve
-      </button>
+      </v-btn>
     </div>
   </div>
 </template>
@@ -39,6 +42,7 @@ import sectionsData from "@/components/sections";
 export default {
   props: {
     modelValue: String,
+    loading: Boolean
   },
   setup(props, { emit }) {
     const section = computed({

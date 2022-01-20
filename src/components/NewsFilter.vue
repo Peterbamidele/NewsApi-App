@@ -17,6 +17,7 @@
           :items="sections"
           v-model="value"
           solo
+          label="home"
       >
 
       </v-select>

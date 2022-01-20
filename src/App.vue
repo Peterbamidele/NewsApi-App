@@ -35,13 +35,8 @@ import Layout from "@/components/Layout"
 import NewsFilter from "@/components/NewsFilter"
 import NewsList from "@/components/NewsList";
 
-
-
 const api = "LxTedW1dmW8lxW5RxdZoNwFmfVc7V0cO";
-    // "02d9cdc50b01b1a7cb04f0ebd51eca49";
-
-
-export default {
+    export default {
   components: {
     Layout,
     NewsFilter,
